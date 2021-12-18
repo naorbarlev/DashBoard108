@@ -4,6 +4,7 @@ const express = require("express");
 const { emitKeypressEvents } = require("readline");
 const app = express();
 const http = require("http").createServer(app);
+const pressAnyKey = require("press-any-key");
 
 //corsטיפול בשגיאות שנזרקות מה
 const socketIO = require("socket.io")(http, {
@@ -63,7 +64,11 @@ http.listen(port, function () {
     let dataObj = { altitude: altitude, his: HIS, adi: ADI };
 
     //להוסיף כאן לחיצה לשליחה
-    console.log("Sending values...");
-    socket.emit("SEND_OBJECT", dataObj);
+    pressAnyKey("Press any key to resolve, or CTRL+C to reject", {
+      ctrlC: "reject",
+    }).then(() => {
+      console.log("Sending values...");
+      socket.emit("SEND_OBJECT", dataObj);
+    });
   });
 });
