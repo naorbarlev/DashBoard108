@@ -63,7 +63,7 @@ http.listen(port, function () {
     //שמירת הערכים מהקונסול לתוך אובייקט שישלח ללקוח כפורמט של מפתח-ערך
     let dataObj = { altitude: altitude, hsi: HSI, adi: ADI };
 
-    //להוסיף כאן לחיצה לשליחה
+    //פונקציית לחיצה על מקש לשליחה
     pressAnyKey("Press any key to resolve, or CTRL+C to reject", {
       ctrlC: "reject",
     }).then(() => {
