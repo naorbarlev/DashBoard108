@@ -15,7 +15,7 @@ const socketIO = require("socket.io")(http, {
 
 const port = 4001;
 
-let altitude, HIS, ADI;
+let altitude, HSI, ADI;
 //הקמת שרת והאזנה לפורט 4001
 http.listen(port, function () {
   console.log("Server is UP...");
@@ -34,17 +34,17 @@ http.listen(port, function () {
       altitude = prompt("Please Enter Altitude: ");
     }
     //קלט כיוון בטווח של 0 ל360
-    HIS = prompt("Please Enter HIS: ");
+    HSI = prompt("Please Enter HSI: ");
     //בדיקת תקינות קלט
     while (
-      HIS > 360 ||
-      HIS < 0 ||
-      HIS == null ||
-      HIS.trim() == "" ||
-      isNaN(HIS)
+      HSI > 360 ||
+      HSI < 0 ||
+      HSI == null ||
+      HSI.trim() == "" ||
+      isNaN(HSI)
     ) {
       console.log("try again...");
-      HIS = prompt("Please Enter HIS: ");
+      HSI = prompt("Please Enter HSI: ");
     }
     //קלט זווית האופק
     ADI = prompt("Please Enter ADI: ");
@@ -61,7 +61,7 @@ http.listen(port, function () {
     }
 
     //שמירת הערכים מהקונסול לתוך אובייקט שישלח ללקוח כפורמט של מפתח-ערך
-    let dataObj = { altitude: altitude, his: HIS, adi: ADI };
+    let dataObj = { altitude: altitude, hsi: HSI, adi: ADI };
 
     //להוסיף כאן לחיצה לשליחה
     pressAnyKey("Press any key to resolve, or CTRL+C to reject", {
